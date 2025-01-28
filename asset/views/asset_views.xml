@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="list_view_asset" model="ir.ui.view">
+        <field name="name">Listview</field>
+        <field name="model">asset.asset</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <newline/>
+                    <group>
+                        <field name="name" nolabel="True"/>
+                        <field name="type" placeholder="select...."/>
+                        <field name="purchase_date" class="oe_edit_only"/>
+                        <field name="value" password="True"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="asset_action" model="ir.actions.act_window">
+        <field name="name">Asset</field>
+        <field name="res_model">asset.asset</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <menuitem id="root_menu" name="Asset"/>
+    <menuitem id="menux" parent="root_menu" action="asset_action"/>
+</odoo>

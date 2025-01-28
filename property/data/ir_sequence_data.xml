@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+        <record id="property_rent_lease_sequence_id" model="ir.sequence">
+          <field name="name">Rent or Lease sequence</field>
+          <field name="code">property.rent.lease</field>
+          <field name="prefix">ROL/</field>
+          <field name="padding">5</field>
+          <field name="number_next">1</field>
+          <field name="company_id" eval="False"/>
+        </record>
+</odoo>

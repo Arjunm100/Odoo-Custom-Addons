@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="product_brand_apple" model="product.brand">
+        <field name="name">Apple Inc</field>
+    </record>
+    <record id="product_brand_samsung" model="product.brand">
+        <field name="name">Samsung</field>
+    </record>
+    <record id="product_brand_google" model="product.brand">
+        <field name="name">Google</field>
+    </record>
+    <record id="product_brand_microsoft" model="product.brand">
+        <field name="name">Microsoft</field>
+    </record>
+    <record id="product_brand_toyota" model="product.brand">
+        <field name="name">Toyota</field>
+    </record>
+    <record id="product_brand_tesla" model="product.brand">
+        <field name="name">Tesla</field>
+    </record>
+    <record id="product_brand_bmw" model="product.brand">
+        <field name="name">BMW</field>
+    </record>
+    <record id="product_brand_mercedes" model="product.brand">
+        <field name="name">Mercedes-Benz</field>
+    </record>
+    <record id="product_brand_gucci" model="product.brand">
+        <field name="name">Gucci</field>
+    </record>
+    <record id="product_brand_prada" model="product.brand">
+        <field name="name">Prada</field>
+    </record>
+    <record id="product_brand_nike" model="product.brand">
+        <field name="name">Nike</field>
+    </record>
+    <record id="product_brand_adidas" model="product.brand">
+        <field name="name">Adidas</field>
+    </record>
+    <record id="product_brand_coca_cola" model="product.brand">
+        <field name="name">Coca-Cola</field>
+    </record>
+    <record id="product_brand_pepsi" model="product.brand">
+        <field name="name">Pepsi</field>
+    </record>
+    <record id="product_brand_mcdonalds" model="product.brand">
+        <field name="name">McDonald's</field>
+    </record>
+    <record id="product_brand_starbucks" model="product.brand">
+        <field name="name">Starbucks</field>
+    </record>
+    <record id="product_brand_disney" model="product.brand">
+        <field name="name">Disney</field>
+    </record>
+    <record id="product_brand_nike" model="product.brand">
+        <field name="name">Procter &amp; Gamble</field>
+    </record>
+    <record id="product_brand_amazon" model="product.brand">
+        <field name="name">Amazon</field>
+    </record>
+    <record id="product_brand_nestle" model="product.brand">
+        <field name="name">Nestlé</field>
+    </record>
+</odoo>

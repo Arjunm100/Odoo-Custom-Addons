@@ -1,0 +1,8 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_property_management_manager,access_property.management,model_property_management,property_group_manager,1,1,1,1
+access_property_management_user,access_property.management,model_property_management,property.property_group_user,1,1,0,0
+access_property_rent_lease_manager,access_property.rent_lease,model_property_rent_lease,property_group_manager,1,1,1,1
+access_property_rent_lease_user,access_property.rent_lease,model_property_rent_lease,property_group_user,1,1,1,0
+access_property_orderline,access_property.orderline,model_property_orderline,base.group_user,1,1,1,1
+access_property_facility,access_property.facility,model_property_facility,base.group_user,1,1,1,1
+access_order_report_wizard,access_property.order_report_wizard,model_order_report_wizard,base.group_user,1,1,1,1

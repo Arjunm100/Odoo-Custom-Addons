@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="clinic_op_reg_action" model="ir.actions.act_window">
+        <field name="name">Registations</field>
+        <field name="res_model">clinic.op.reg</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="clinic_op_reg_view_list" model="ir.ui.view">
+        <field name="name">clinic.op.reg.view.form</field>
+        <field name="model">clinic.op.reg</field>
+        <field name="arch" type="xml">
+            <list string="List view" edit="False">
+                <field name="serial_no"/>
+                <field name="patient_name"/>
+                <field name="op_date"/>
+            </list>
+        </field>
+    </record>
+    <record id="clinic_op_reg_view_form" model="ir.ui.view">
+        <field name="name">clinic.op.reg.view.form</field>
+        <field name="model">clinic.op.reg</field>
+        <field name="arch" type="xml">
+            <form string="form view">
+                <sheet>
+                    <group>
+                        <group col="1">
+                            <field name="patient_name"/>
+                            <field name="patient_age"/>
+                            <field name="patient_gender"/>
+                            <field name="token_no"/>
+                        </group>
+                        <group col="1">
+                            <field name="serial_no"/>
+                            <field name="doctor"/>
+                            <field name="op_fee"/>
+                            <field name="op_date"/>
+                            <field name="company_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

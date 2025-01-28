@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_rent_lease">
+       <t t-call="web.html_container">
+           <t t-call="web.external_layout">
+                   <h2>Property Order Report</h2>
+               <div class="row">
+                    <div class="col-12">
+                        <table class="table table-borderless">
+                            <thead style="display: table-row-group; border-bottom: 1px solid black;">
+                                <tr>
+                                    <th class="text-start fw-bold" style="width: 15%" scope="col">Property Name</th>
+                                    <th class="text-start fw-bold" style="width: 15%" scope="col">Owner Name</th>
+                                    <th class="text-start fw-bold" style="width: 10%" scope="col">Order Type</th>
+                                    <th class="text-start fw-bold" style="width: 15%" scope="col">Tenant Name</th>
+                                    <th class="text-start fw-bold" style="width: 15%" scope="col">Start Date</th>
+                                    <th class="text-start fw-bold" style="width: 15%" scope="col">End Date</th>
+                                    <th class="text-start fw-bold" style="width: 10%" scope="col">Amount</th>
+                                    <th class="text-start fw-bold" style="width: 10%" scope="col">State</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="data" t-as="d">
+                                    <tr style="border-bottom: 1px solid lightgrey;">
+                                        <td class="align-top"><span t-esc="d['property_name']"/></td>
+                                        <td class="align-top"><span t-esc="d['owner_name']"/></td>
+                                        <td class="align-top"><span t-esc="d['rent_lease']"/></td>
+                                        <td class="align-top"><span t-esc="d['tenant_name']"/></td>
+                                        <td class="align-top"><span t-esc="d['start_date']"/></td>
+                                        <td class="align-top"><span t-esc="d['end_date']"/></td>
+                                        <td class="align-top"><span t-esc="d['amount']"/></td>
+                                        <td class="align-top"><span t-esc="d['stages']"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+               </div>
+           </t>
+       </t>
+    </template>
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+        <menuitem id="property_management_root" name="Property"/>
+        <menuitem id="configuration_menu" parent="property_management_root"
+                  name="Configuration" sequence="2"/>
+        <menuitem id="property_facility_menu" parent="configuration_menu"
+                  action="property_management_action"/>
+        <menuitem id="invoice_menu" parent="configuration_menu"
+                  action="account_move_inherit_action"/>
+        <menuitem id="properties_menu" parent="configuration_menu"
+                  action="property_facility_action"/>
+        <menuitem id="property_rent_lease_menu"
+                  parent="property_management_root"
+                  action="property_rent_lease_action"
+                  sequence="0"/>
+        <menuitem id="property_report_menu" parent="property_management_root"
+                  action="order_report_wizard_action" sequence="1"/>
+</odoo>

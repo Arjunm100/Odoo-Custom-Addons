@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="stock_picking_wizard_view_form" model="ir.ui.view">
+        <field name="name">stock_picking_wizard_view_form</field>
+        <field name="model">stock.picking.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <h6>
+                    The Quantity is not between the tolerance range.Do you want to continue?
+                </h6>
+                <footer>
+                    <button name="action_continue" type="object" string="Yes"/>
+                    <button special="cancel" string="No"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

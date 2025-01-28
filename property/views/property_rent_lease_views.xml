@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="property_rent_lease_view_form" model="ir.ui.view">
+        <field name="name">property.rent.lease.view.form</field>
+        <field name="model">property.rent.lease</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_create_invoice"
+                            class="btn-primary"
+                            type="object" string="Create Invoice"
+                            invisible="stages == 'draft' or invoice_status == 'full'"
+                            groups="property.property_group_manager"/>
+                    <button name="action_confirm" type="object" string="Confirm"
+                            invisible="stages != 'draft'" class="btn-primary"
+                            groups="property.property_group_manager"/>
+                    <button name="action_close" type="object" string="Close"
+                            invisible="stages in ['draft','close']"
+                            groups="property.property_group_manager"/>
+                    <button name="action_return" type="object" string="Return"
+                            invisible="stages in ['draft','return','close','expired']"
+                            groups="property.property_group_manager"/>
+                    <button name="action_draft" type="object" string="Reset"
+                            invisible="stages == 'draft'" class="btn-secondary"
+                            groups="property.property_group_manager"/>
+                    <field name="stages" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Paid" bg_color="text-bg-success"
+                            invisible="invoice_status != 'full'"/>
+                    <widget name="web_ribbon" title="Partially Paid" bg_color="text-bg-warning"
+                            invisible="invoice_status != 'partial'"/>
+                    <widget name="web_ribbon" title="Invoiced" bg_color="text-bg-warning"
+                            invisible="invoice_status != 'invoiced'"/>
+                    <widget name="web_ribbon" title="To Invoice" bg_color="text-bg-info"
+                            invisible="invoice_status != 'not_invoiced'"/>
+                    <div name="button_box" class="oe_button_box">
+                        <button class="oe_stat_button"
+                                type="object"
+                                icon="fa-pencil-square-o"
+                                name="action_get_invoices_record"
+                                invisible="invoice_count == 0">
+                            <field name="invoice_count" string="invoices" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="sequence"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="tenant_id" readonly="stages != 'draft'"/>
+                            <field name="rent_lease" readonly="stages != 'draft'"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="start_date"
+                                   string="Time Period"
+                                   readonly="stages != 'draft'"
+                                   widget="date_range"
+                                   options="{'end_date_field': 'end_date'}"/>
+                            <field name="end_date" readonly="stages != 'draft'"
+                                   invisible="1"/>
+                            <field name="due_date" readonly="stages != 'draft'"/>
+                            <field name="days_count" force_save="True"/>
+                            <field name="company_id" readonly="stages != 'draft'"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Properties">
+                            <field name="property_orderline_ids"
+                                   readonly="stages != 'draft'">
+                                <list editable="bottom" edit="True">
+                                    <field name="property_id" domain="[('status','=','draft')]"/>
+                                    <field name="currency_id"/>
+                                    <field name="quantity_invoiced"/>
+                                    <field name="amount" readonly="0"/>
+                                    <field name="total_amount"/>
+                                </list>
+                            </field>
+                            <group class="oe_subtotal_footer">
+                                <field name="grand_total"
+                                decoration-bf="1"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter reload_on_attachment="True"/>
+            </form>
+        </field>
+    </record>
+    <record id="property_rent_lease_view_list" model="ir.ui.view">
+        <field name="name">property.rent.lease.view.list</field>
+        <field name="model">property.rent.lease</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence"/>
+                <field name="tenant_id"/>
+                <field name="currency_id"/>
+                <field name="grand_total" sum="Total"/>
+                <field name="stages" decoration-success="stages == 'confirmed'"
+                       decoration-info="stages == 'draft'"
+                       decoration-warning="stages == 'closed'"
+                       widget="badge"/>
+                <field name="company_id"/>
+            </list>
+        </field>
+    </record>
+    <record id="property_rent_lease_view_search" model="ir.ui.view">
+        <field name="name">property.rent.lease.view.search</field>
+        <field name="model">property.rent.lease</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter name="rent_lease" string="Rent" domain="[('rent_lease','=','rent')]"/>
+                <filter name="rent_lease" string="Lease" domain="[('rent_lease','=','lease')]"/>
+                <group string="Group By" expand="0">
+                    <filter string="Rent and Lease" name="rent_lease" context="{'group_by': 'rent_lease'}"/>
+                    <filter string="Tenant" name="tenant_id" context="{'group_by': 'tenant_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="property_rent_lease_action" model="ir.actions.act_window">
+        <field name="name">Rent &amp; Lease Orders</field>
+        <field name="res_model">property.rent.lease</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_ids"
+               eval="[Command.clear(),Command.create({'view_mode': 'list',
+               'view_id': ref('property_rent_lease_view_list')})]"/>
+    </record>
+</odoo>

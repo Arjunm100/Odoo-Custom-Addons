@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="property_management_flat" model="property.management">
+        <field name="name">flat</field>
+        <field name="state_id" ref="base.state_in_kl"/>
+        <field name="country_id" ref="base.in"/>
+        <field name="owner_id" ref="base.res_partner_address_3"/>
+        <field name="price">1000000</field>
+        <field name="lease_amount">10000</field>
+        <field name="rent_amount">2000</field>
+        <field name="currency_id" ref="base.USD"/>
+        <field name="first_street">street</field>
+    </record>
+    <record id="property_management_house" model="property.management">
+        <field name="name">House</field>
+        <field name="state_id" ref="base.state_in_kl"/>
+        <field name="country_id" ref="base.in"/>
+        <field name="owner_id" ref="base.res_partner_address_3"/>
+        <field name="price">2300000</field>
+        <field name="lease_amount">40000</field>
+        <field name="rent_amount">5000</field>
+        <field name="currency_id" ref="base.USD"/>
+        <field name="first_street">street</field>
+    </record>
+        <record id="property_management_apartment" model="property.management">
+        <field name="name">Apartment</field>
+        <field name="state_id" ref="base.state_in_kl"/>
+        <field name="country_id" ref="base.in"/>
+        <field name="owner_id" ref="base.res_partner_address_4"/>
+        <field name="price">1500000</field>
+        <field name="lease_amount">12000</field>
+        <field name="rent_amount">3000</field>
+        <field name="currency_id" ref="base.USD"/>
+        <field name="first_street">Main Avenue</field>
+    </record>
+
+    <record id="property_management_villa" model="property.management">
+        <field name="name">Villa</field>
+        <field name="state_id" ref="base.state_in_kl"/>
+        <field name="country_id" ref="base.in"/>
+        <field name="owner_id" ref="base.res_partner_address_5"/>
+        <field name="price">4500000</field>
+        <field name="lease_amount">60000</field>
+        <field name="rent_amount">8000</field>
+        <field name="currency_id" ref="base.USD"/>
+        <field name="first_street">Palm Street</field>
+    </record>
+
+    <record id="property_management_office_space" model="property.management">
+        <field name="name">Office Space</field>
+        <field name="state_id" ref="base.state_in_kl"/>
+        <field name="country_id" ref="base.in"/>
+        <field name="owner_id" ref="base.res_partner_address_5"/>
+        <field name="price">3000000</field>
+        <field name="lease_amount">25000</field>
+        <field name="rent_amount">7000</field>
+        <field name="currency_id" ref="base.USD"/>
+        <field name="first_street">Business Center</field>
+    </record>
+
+    <record id="property_management_penthouse" model="property.management">
+        <field name="name">Penthouse</field>
+        <field name="state_id" ref="base.state_in_kl"/>
+        <field name="country_id" ref="base.in"/>
+        <field name="owner_id" ref="base.res_partner_address_7"/>
+        <field name="price">5000000</field>
+        <field name="lease_amount">80000</field>
+        <field name="rent_amount">10000</field>
+        <field name="currency_id" ref="base.USD"/>
+        <field name="first_street">Skyline Avenue</field>
+    </record>
+
+    <record id="property_management_warehouse" model="property.management">
+        <field name="name">Warehouse</field>
+        <field name="state_id" ref="base.state_in_kl"/>
+        <field name="country_id" ref="base.in"/>
+        <field name="owner_id" ref="base.res_partner_address_3"/>
+        <field name="price">2500000</field>
+        <field name="lease_amount">20000</field>
+        <field name="rent_amount">4000</field>
+        <field name="currency_id" ref="base.USD"/>
+        <field name="first_street">Industrial Area</field>
+    </record>
+
+</odoo>

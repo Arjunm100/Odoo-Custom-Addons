@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="property_facility_renovated" model="property.facility">
+        <field name="name">Renovated</field>
+    </record>
+    <record id="property_facility_furnished" model="property.facility">
+        <field name="name">Furnished</field>
+    </record>
+    <record id="property_facility_garden" model="property.facility">
+        <field name="name">Garden</field>
+    </record>
+    <record id="property_facility_pool" model="property.facility">
+        <field name="name">Swimming Pool</field>
+    </record>
+    <record id="property_facility_parking" model="property.facility">
+        <field name="name">Parking</field>
+    </record>
+    <record id="property_facility_security" model="property.facility">
+        <field name="name">24/7 Security</field>
+    </record>
+    <record id="property_facility_gym" model="property.facility">
+        <field name="name">Gym</field>
+    </record>
+    <record id="property_facility_wifi" model="property.facility">
+        <field name="name">Wi-Fi</field>
+    </record>
+    <record id="property_facility_ac" model="property.facility">
+        <field name="name">Air Conditioning</field>
+    </record>
+    <record id="property_facility_pets_allowed" model="property.facility">
+        <field name="name">Pets Allowed</field>
+    </record>
+    <record id="property_facility_fire_safety" model="property.facility">
+        <field name="name">Fire Safety</field>
+    </record>
+</odoo>

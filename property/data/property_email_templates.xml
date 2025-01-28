@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="email_template_property_order_confirm" model="mail.template">
+       <field name="name">Property:Order Confirmation</field>
+       <field name="model_id" ref="property.model_property_rent_lease"/>
+       <field name="subject">Confirmation of your order{{ object.sequence }}</field>
+       <field name="email_from">{{ (object.company_id.email_formatted or user.email_formatted) }}</field>
+       <field name="partner_to">{{ object.tenant_id.id }}</field>
+        <field name="auto_delete" eval="False"/>
+       <field name="description">Sent to tenant on order confirmation</field>
+       <field name="body_html" type="html">
+           <div>
+               <p>
+                   Hello <t t-out="object.tenant_id.name">a</t>,
+                   <br/>
+                   Your <t t-out="object.rent_lease">g</t> Order(<t t-out="object.sequence">h</t>) Has been confirmed
+                   <br/>
+                   Thank you,
+                   <br/>
+                   <br/>Mitchell Admin
+                   <br/>
+                   <br/>
+               </p>
+           </div>
+       </field>
+    </record>
+    <record id="email_template_property_order_close" model="mail.template">
+       <field name="name">Property Order Closing</field>
+       <field name="model_id" ref="property.model_property_rent_lease"/>
+       <field name="subject">Closure of your order{{ object.sequence }}</field>
+       <field name="partner_to">{{ object.tenant_id.id }}</field>
+       <field name="description">Sent to tenant on order closure</field>
+        <field name="auto_delete" eval="False"/>
+       <field name="body_html" type="html">
+           <div>
+               <p>
+                   Dear <t t-out="object.tenant_id.name"/>,
+                   <br/>
+                   Your <t t-out="object.rent_lease"/> Order(<t t-out="object.sequence"/>) Has been Closed
+                   <br/>
+                   Thank you,
+                   <br/>
+                   <br/>Mitchell Admin
+                   <br/>
+                   <br/>
+               </p>
+           </div>
+       </field>
+    </record>
+    <record id="email_template_property_order_expired" model="mail.template">
+       <field name="name">Property Order Expiring</field>
+       <field name="model_id" ref="property.model_property_rent_lease"/>
+       <field name="subject">Expiry of your order{{ object.sequence }}</field>
+       <field name="partner_to">{{ object.tenant_id.id }}</field>
+       <field name="description">Sent to tenant on order expiration</field>
+        <field name="auto_delete" eval="True"/>
+       <field name="body_html" type="html">
+           <div>
+               <p>
+                   Dear <t t-out="object.tenant_id.name"/>,
+                   <br/>
+                   Your <t t-out="object.rent_lease"/> Order(<t t-out="object.sequence"/>) Has been Expired
+                   <br/>
+                   Thank you,
+                   <br/>
+                   <br/>Mitchell Admin
+                   <br/>
+                   <br/>
+               </p>
+           </div>
+       </field>
+    </record>
+    <record id="email_template_property_order_follow_up" model="mail.template">
+       <field name="name">Property Order Follow-up</field>
+       <field name="model_id" ref="property.model_property_rent_lease"/>
+       <field name="subject">Reminder: Pending Outstanding Payment{{ object.sequence }}</field>
+       <field name="email_from">odoodemo10011@gmail.com</field>
+        <field name="partner_to">{{ object.tenant_id.id }}</field>
+       <field name="description">Sent to tenant on order delayed payment</field>
+        <field name="auto_delete" eval="True"/>
+       <field name="body_html" type="html">
+           <div>
+               <p>
+                   Dear <t t-out="object.tenant_id.name"/>,
+                   <br/>
+                   This is a friendly reminder regarding the pending outstanding payment of your
+                   <t t-out="object.rent_lease"/> Order(<t t-out="object.sequence"/>) due on
+                   <t t-out="object.due_date"/>.
+                   <br/>
+                   Kindly arrange for the payment at your earliest convenience.<br/>
+                   Please let us know if you require any further details or have any concerns.
+                   Thank you for your prompt attention.
+                   <br/>
+                   Thank you,
+                   <br/>
+                   <br/>Mitchell Admin
+                   <br/>
+                   <br/>
+               </p>
+           </div>
+       </field>
+    </record>
+</odoo>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="clinic_root_menu" name="Clinic"/>
+    <menuitem id="clinic_Patients" name="patients" parent="clinic_root_menu" action="clinic_action"/>
+    <menuitem id="clinic_op" name="Op registration" parent="clinic_root_menu" action="clinic_op_reg_action"/>
+    <menuitem id="clinic_consultation" name="Consultation" parent="clinic_root_menu" action="clinic_consultation_action"/>
+</odoo>

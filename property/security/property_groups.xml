@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.module.category" id="property.module_category_property">
+        <field name="name">property</field>
+    </record>
+    <record id="property_group_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="property.module_category_property"/>
+    </record>
+    <record id="property_group_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="property.module_category_property"/>
+        <field name="implied_ids" eval="[Command.link(ref('property_group_user'))]"/>
+    </record>
+</odoo>

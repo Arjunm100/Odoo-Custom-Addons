@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="clinic_priscription_view_list" model="ir.ui.view">
+        <field name="name">clinic.priscription.view.list</field>
+        <field name="model">clinic.priscription</field>
+        <field name="arch" type="xml">
+            <list edit="True" editable="bottom" open_form_view="True">
+                <field name="priscription_id"/>
+                <field name="medcine"/>
+                <field name="dose"/>
+                <field name="quantity"/>
+            </list>
+        </field>
+    </record>
+</odoo>
