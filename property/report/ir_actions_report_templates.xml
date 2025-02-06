@@ -2,7 +2,7 @@
 <odoo>
     <template id="report_rent_lease">
        <t t-call="web.html_container">
-           <t t-call="web.external_layout">
+           <tr t-call="web.external_layout">
                    <h2>Property Order Report</h2>
                <div class="row">
                     <div class="col-12">
@@ -36,7 +36,7 @@
                         </table>
                     </div>
                </div>
-           </t>
+           </tr>
        </t>
     </template>
 </odoo>

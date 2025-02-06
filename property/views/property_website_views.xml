@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="website_property_menu" model="website.menu">
+        <field name="name">Property orders</field>
+        <field name="url">/property</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence" type="int">90</field>
+    </record>
+    <template id="web_form_template">
+        <t t-call="website.layout">
+            <section data-vcss="001" data-snippet="s_website_form">
+                <div id="wrap" class="oe_structure oe_empty">
+                    <div class="container">
+                        <form id="property_order_tab">
+                            <div class="modal_property" name="property_alert_box">
+                                <button class="close-btn" id="property_alert_close" type="button">x</button>
+                                <div class="modal-header" name="property_header"></div>
+                                <ul name="property_ul">
+                                    <li name="property_li"></li>
+                                </ul>
+                            </div>
+                            <label for="start_date">
+                                <span class="s_website_form_label_content">
+                                    Start Date
+                                </span>
+                            </label>
+                            <input id="start_date" type="date" class="form-control form-control shadow-none w-50"
+                                   name="start_date" required="1"/>
+                            <br/>
+                            <label for="end_date">
+                                <span class="s_website_form_label_content">
+                                    End Date
+                                </span>
+                            </label>
+                            <input id="end_date" type="date" class="form-control form-control shadow-none w-50"
+                                   style="border-color : #8AAAE5;" name="end_date" required="1"/>
+                            <br/>
+                            <label for="days_count">
+                                <span class="s_website_form_label_content">
+                                    Days
+                                </span>
+                            </label>
+                            <div id="days_count" name="days_count" class="d-inline"></div>
+                            <br/>
+                            <br/>
+                            <label for="order_type">
+                                <span class="s_website_form_label_content">
+                                    Order Type
+                                </span>
+                            </label>
+                            <select id="order_type" name="order_type" required="1"
+                                    class="form-control form-control shadow-none w-50">
+                                <option value="rent">Rent</option>
+                                <option value="lease">Lease</option>
+                            </select>
+                            <br/>
+                            <div class="property_orderline">
+                                <table class="table table-bordered mt-3 orderline_table" id="table_orderline">
+                                    <thead>
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    Property
+                                                </strong>
+                                            </td>
+                                            <td>
+                                                <strong>
+                                                    Amount
+                                                </strong>
+                                            </td>
+                                            <td>
+                                                <strong>
+                                                    Total Amount
+                                                </strong>
+                                            </td>
+                                            <td style="width : 50px;">
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                    <div class="collapse">
+                                        <tbody class="property_tbody">
+                                            <tr class="demo_order_lines d-none" id="demo_line">
+                                                <td>
+                                                    <select id="property" name="property_orderline" class="form-control"
+                                                            required="1">
+                                                        <option value="['False', '', '', '']"></option>
+                                                        <t t-foreach="properties" t-as="val">
+                                                            <option t-att-value="str(properties[val])">
+                                                                <t t-esc="properties[val][1]"/>
+                                                            </option>
+                                                        </t>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <div name="amount"/>
+                                                </td>
+                                                <td>
+                                                    <div name="total_amount"/>
+                                                </td>
+                                                <td style="width : 50px;">
+                                                    <button type="button" class="btn fa fa-trash-o remove_line"
+                                                            style="color: red; padding: 0px; margin-left: -6px; margin-top: 6px; margin-bottom: 15px;"
+                                                            name="delete" aria-label="Delete row 1"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </div>
+                                </table>
+                                <div>
+                                    <button type="button"
+                                            class="btn btn-info add_order_line button-color"
+                                            style="float: right; margin-right: -15px;">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <div class="clearfix oe_login_buttons">
+                                <button type="button"
+                                        class="create_order btn btn-primary btn-block">
+                                    Submit
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </t>
+    </template>
+    <template id="thank_you_template">
+        <t t-call="website.layout">
+            <section data-vcss="001" data-snippet="s_website_form">
+                <div id="property_thankyou" class="oe_structure">
+                    <div class="container">
+                        <form>
+                            <div class="property_content">
+                                <div class="thank-message-header">
+                                    Your Order has been created successfully<br/>
+                                    Order ID : <a t-attf-href="/my/property/#{order[0]}"><t t-esc="order[1]"/></a>
+                                </div>
+                                <div class="thank-message-body">
+                                    Thank You
+                                </div>
+                                <div>
+                                    <a t-attf-href="/property"><button class="btn btn-primary" type="button">New Order</button></a>
+                                    <a t-attf-href="/"><button class="btn btn-success" type="button">Home</button></a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </t>
+    </template>
+</odoo>

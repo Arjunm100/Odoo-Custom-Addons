@@ -25,9 +25,8 @@ class PropertyRentLease(models.Model):
                                   default=lambda self: self.env.company.currency_id.id)
     start_date = fields.Datetime(string='Start Date', required=True, default=fields.Datetime.now)
     end_date = fields.Datetime(string='End Date', required=True)
-    due_date = fields.Datetime(string='Due Date', required=True,
-                               default=fields.Datetime.now())
-    days_count = fields.Float(string='Rent Period(Days)',readonly=True)
+    due_date = fields.Datetime(string='Due Date', required=True,default=fields.Datetime.now())
+    days_count = fields.Float(string='Rent Period(Days)',compute='_compute_days_count')
     stages = fields.Selection(selection=[
         ('draft', 'Draft'), ('confirmed', 'Confirmed'), ('close', 'Close'),
         ('return', 'Return'), ('expired', 'Expired'),
@@ -42,6 +41,17 @@ class PropertyRentLease(models.Model):
                                                  ('partial', 'Partially Paid'),
                                                  ('full', 'Fully Paid')],
                                       readonly=True, compute='_compute_invoice_status')
+
+    @api.depends('start_date', 'end_date')
+    def _compute_days_count(self):
+        """Compute days count"""
+        for rec in self:
+            if rec.start_date and rec.end_date:
+                rec.days_count = (
+                    abs(round(((rec.end_date - rec.start_date).total_seconds()) / 86400, 2))
+                )
+            else:
+                rec.days_count = 0.0
 
     def _compute_invoice_count(self):
         """Compute invoice count"""
@@ -96,16 +106,6 @@ class PropertyRentLease(models.Model):
     @api.onchange('end_date')
     def _onchange_due_date_validation(self):
         self.due_date = self.end_date
-
-    @api.onchange('start_date', 'end_date')
-    def _onchange_days_count_validation(self):
-        """Compute days count"""
-        if self.start_date and self.end_date:
-            self.days_count = (
-                abs(round(((self.end_date - self.start_date).total_seconds()) / 86400, 2))
-            )
-        else:
-            self.days_count = 0.0
 
     @api.model
     def create(self, vals_list):

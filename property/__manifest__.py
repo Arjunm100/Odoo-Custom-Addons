@@ -3,7 +3,7 @@
     'name':'Property',
     'version':'18.0.3.0.0',
     'application': True,
-    'depends':['mail','account'],
+    'depends':['mail','account', 'website'],
     'data':
     [
         'security/property_security.xml',
@@ -22,16 +22,23 @@
 
         'wizard/order_report_wizard_views.xml',
 
+        'views/property_portal_templates.xml',
+        'views/property_website_views.xml',
         'views/property_management_views.xml',
         'views/property_rent_lease_views.xml',
         'views/property_facility_views.xml',
         'views/account_move_views.xml',
         'views/res_partner_views.xml',
+        'views/property_snippet_views.xml',
         'views/property_management_menus.xml',
     ],
     'assets' : {
         'web.assets_backend':[
-            'property/static/src/js/property_xlsx_report.js'
+            'property/static/src/js/property_xlsx_report.js',
+        ],
+        'web.assets_frontend':[
+            'property/static/src/css/property.css',
+            'property/static/src/js/property_management.js',
         ]
     }
 }

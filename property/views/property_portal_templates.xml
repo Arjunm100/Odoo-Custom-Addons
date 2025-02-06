@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_property" name="Property" inherit_id="portal.portal_breadcrumbs" priority="70">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'property'" t-attf-class="breadcrumb-item #{'active ' if orders else ''}">
+                Orders
+            </li>
+            <li t-elif="page_name == 'property_order'" t-attf-class="breadcrumb-item #{'active ' if orders else ''}">
+                <a t-attf-href="/my/property?{{ keep_query() }}">Orders</a> / <t t-out="order.sequence"/>
+            </li>
+        </xpath>
+    </template>
+    <template id="portal_my_home_menu_property" name="Property" inherit_id="portal.portal_my_home"
+              customize_show="True" priority="50">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="before">
+            <t t-set="portal_client_category_enable" t-value="True"/>
+        </xpath>
+        <div id="portal_client_category" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/sale/static/src/img/bag.svg'"/>
+                <t t-set="title">Property</t>
+                <t t-set="url" t-value="'/my/property'"/>
+                <t t-set="text">View Property</t>
+                <t t-set="placeholder_count" t-value="'portal_property'"/>
+            </t>
+        </div>
+    </template>
+    <template id="portal_my_home_property_views" name="My Property">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Property</t>
+            </t>
+            <t t-if="orders" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th class="text-left">Order ID</th>
+                        <th class="text-center">Order Type</th>
+                        <th class="text-center">Start Date</th>
+                        <th class="text-center">Total Amount</th>
+                        <th class="text-end">Status</th>
+                    </tr>
+                </thead>
+                <t t-foreach="orders" t-as="record">
+                    <tr>
+                        <td class='text-left'>
+                            <a t-attf-href="/my/property/#{record.id}"><t t-esc="record.sequence"/></a>
+                        </td>
+                        <td class='text-center'>
+                            <span t-field="record.rent_lease"/>
+                        </td>
+                        <td class='text-center'>
+                            <span t-field="record.start_date"/>
+                        </td>
+                        <td class='text-center'>
+                            <span t-field="record.grand_total"/>
+                        </td>
+                        <td class='text-end'>
+                            <span t-field="record.stages"/>
+                        </td>
+                    </tr>
+                </t>
+            </t>
+            <t t-else="">
+                    <div class="text-center">No Orders Found.Click <a  t-attf-href="/property">Here</a> to create new orders</div>
+            </t>
+        </t>
+    </template>
+    <template id="property_order_portal_content" name="Property Order Portal Content" inherit_id="portal.portal_sidebar" primary="True">
+        <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Property</t>
+            </t>
+            <div t-attf-class="pb-5" id="portal_property_content">
+                <div id="introduction" class="row">
+                    <div class="col-6" id="intro_row">
+                        <h2>
+                            <t t-out="order.sequence"/>
+                        </h2>
+                    </div>
+                    <div class="col-6">
+                        <h3>
+                            <t t-out="dict(request.env['property.rent.lease'].fields_get('stages')['stages']['selection']).get(order.stages)"/>
+                        </h3>
+                    </div>
+                </div>
+                <div id="content">
+                    <div id="informations" class="row">
+                        <div id="order_info" class="col-6">
+                            <table class="table table-borderless table-sm">
+                                <tbody style="white-space:nowrap" id="property_info_table">
+                                    <tr>
+                                        <th class="ps-0 pb-0">Tenant Name :</th>
+                                        <td class="w-100 pb-0 text-wrap"><span t-field="order.tenant_id.name"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="ps-0 pb-0">Order Type :</th>
+                                        <td class="w-100 pb-0 text-wrap"><span t-field="order.rent_lease"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="ps-0 pb-0">Company :</th>
+                                        <td class="w-100 pb-0 text-wrap"><span t-field="order.company_id.name"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="customer_info" class="col-6">
+                                <div id="order_info" class="col-12 col-lg-6 mb-4">
+                                    <table class="table table-borderless table-sm">
+                                    <tbody style="white-space:nowrap" id="property_info_table">
+                                        <tr>
+                                            <th class="ps-0 pb-0">Start Date :</th>
+                                            <td class="w-100 pb-0 text-wrap"><span t-field="order.start_date"/></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="ps-0 pb-0">End Date :</th>
+                                            <td class="w-100 pb-0 text-wrap"><span t-field="order.end_date"/></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="ps-0 pb-0">Days :</th>
+                                            <td class="w-100 pb-0 text-wrap"><span t-field="order.days_count"/></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="ps-0 pb-0">Due Date :</th>
+                                            <td class="w-100 pb-0 text-wrap"><span t-field="order.due_date"/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="details" class="col-9">
+                            <div class="table-responsive">
+                                <table class="table table-sm" id="property_order_table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-start">Property</th>
+                                            <th class="text-end">Quantity Invoiced</th>
+                                            <th class="text-end">Amount</th>
+                                            <th class="text-end">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="order.property_orderline_ids" t-as="line">
+                                            <tr class="fw-bold o_line_section">
+                                                <td class="text-start"><t t-out="line.property_id.name"/></td>
+                                                <td class="text-end"><t t-out="line.quantity_invoiced"/></td>
+                                                <td class="text-end"><t t-out="line.amount"/></td>
+                                                <td class="text-end"><t t-out="line.total_amount"/></td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div id="total" name="total" style="page-break-inside: avoid;">
+                            <div class="col-xs-7 col-md-5 ms-auto text-end fw-bold fs-5">
+                                Total :<t t-out="order.grand_total"/>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>
