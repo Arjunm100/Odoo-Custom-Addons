@@ -30,6 +30,7 @@
         'views/account_move_views.xml',
         'views/res_partner_views.xml',
         'views/property_snippet_views.xml',
+        'views/property_information_views.xml',
         'views/property_management_menus.xml',
     ],
     'assets' : {
@@ -39,6 +40,8 @@
         'web.assets_frontend':[
             'property/static/src/css/property.css',
             'property/static/src/js/property_management.js',
+            'property/static/src/xml/property_snippet_template.xml',
+            'property/static/src/js/property_snippet.js'
         ]
     }
 }

@@ -13,6 +13,7 @@
                 <sheet>
                     <group>
                         <field name="tag"/>
+                        <field name="company_id"/>
                     </group>
                 </sheet>
             </form>

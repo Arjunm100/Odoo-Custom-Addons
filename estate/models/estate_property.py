@@ -7,6 +7,7 @@ from odoo import fields,models,api
 class Property(models.Model):
     _name = 'estate.property'
     _description = 'property details'
+    _check_company_auto = True
 
     name = fields.Char(required=True,string="Name of the Property",help="Name of the property")
     description = fields.Text(string="Description")
@@ -33,7 +34,8 @@ class Property(models.Model):
     propertytype = fields.Many2one("estate.property.type", string="Property type")
     buyer = fields.Many2one('res.partner',copy=False,readonly=True)
     salesperson = fields.Many2one('res.users', string='Salesperson', index=True, tracking=True, default=lambda self: self.env.user)
-    tag = fields.Many2many(comodel_name='estate.property.tag',string='Tags')
+    tag = fields.Many2many(comodel_name='estate.property.tag',string='Tags',check_company=True)
+    company_id = fields.Many2one('res.company',default=lambda self:self.env.company.id)
     offer = fields.One2many(string='offers',comodel_name='estate.property.offer',inverse_name='propertyId')
     totalarea = fields.Float(compute='_computetotalarea')
     garden = fields.Boolean(string='Garden')

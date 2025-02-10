@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="property_data_template">
+       <t t-call="website.layout">
+           <section data-vcss="001" data-snippet="s_website_form">
+                <div id="wrap" class="oe-structure oe_empty">
+                    <div class="container">
+                        <form id="property_information">
+                            <div class="oe_title">
+                                <h1 class="text-uppercase">
+                                    <div class="d-flex">
+                                        <t t-esc="property.name"/>
+                                    </div>
+                                </h1>
+                            </div>
+                            <div class="container">
+                                <div class="row mb-5">
+                                    <div class="col-6">
+                                        <h4 class="border-bottom pb-2">Information</h4>
+                                        <div class="row w-75">
+                                            <div class="col-6">
+                                                <h6 class="font-weight-light text-start"><strong>Owner </strong></h6>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="text-start"><t t-out="property.owner_id.name"/></h6>
+                                            </div>
+                                        </div>
+                                        <div class="row w-75">
+                                            <div class="col-6">
+                                                <h6 class="font-weight-light text-start"><strong>Market-Value </strong></h6>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="text-start"><t t-out="property.price"/></h6>
+                                            </div>
+                                        </div>
+                                        <div class="row w-75">
+                                            <div class="col-6">
+                                                <h6 class="font-weight-light text-start"><strong>Rent-Amount</strong></h6>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="text-start"><t t-out="property.rent_amount"/></h6>
+                                            </div>
+                                        </div>
+                                        <div class="row w-75">
+                                            <div class="col-6">
+                                                <h6 class="font-weight-light text-start"><strong>Lease-Amount</strong></h6>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="text-start"><t t-out="property.lease_amount"/></h6>
+                                            </div>
+                                        </div>
+                                        <div class="row w-75">
+                                            <div class="col-6">
+                                                <h6 class="font-weight-light text-start"><strong>Build Date</strong></h6>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="text-start"><t t-out="property.built_date"/></h6>
+                                            </div>
+                                        </div>
+                                        <div class="row w-75">
+                                            <div class="col-6">
+                                                <h6 class="font-weight-light text-start"><strong>Available for Sale</strong></h6>
+                                            </div>
+                                            <div class="col-6">
+                                                <t t-if="property.can_sold">
+                                                    <h6 class="font-weight-light text-start">Yes</h6>
+                                                </t>
+                                                <t t-else="">
+                                                    <h6 class="font-weight-light text-start">No</h6>
+                                                </t>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <h4 class="border-bottom pb-2">Address</h4>
+                                        <div class="row w-75">
+                                            <div class="col-6">
+                                                <h6 class="font-weight-light text-start"><strong>Street 1</strong></h6>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="text-start"><t t-out="property.first_street"/></h6>
+                                            </div>
+                                        </div>
+                                        <div class="row w-75">
+                                            <div class="col-6">
+                                                <h6 class="font-weight-light text-start"><strong>Street 2</strong></h6>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="text-start"><t t-out="property.second_street"/></h6>
+                                            </div>
+                                        </div>
+                                        <div class="row w-75">
+                                            <div class="col-6">
+                                                <h6 class="font-weight-light text-start"><strong>City</strong></h6>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="text-start"><t t-out="property.city"/></h6>
+                                            </div>
+                                        </div>
+                                        <div class="row w-75">
+                                            <div class="col-6">
+                                                <h6 class="font-weight-light text-start"><strong>State</strong></h6>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="text-start"><t t-out="property.state_id.name"/></h6>
+                                            </div>
+                                        </div>
+                                        <div class="row w-75">
+                                            <div class="col-6">
+                                                <h6 class="font-weight-light text-start"><strong>Zip Code</strong></h6>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="text-start"><t t-out="property.pincode"/></h6>
+                                            </div>
+                                        </div>
+                                        <div class="row w-75">
+                                            <div class="col-6">
+                                                <h6 class="font-weight-light text-start"><strong>Country</strong></h6>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="text-start"><t t-out="property.country_id.name"/></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <h6 class="border-bottom pb-2">Facility</h6>
+                                        <ul>
+                                            <t t-foreach="property.facility_ids" t-as="facility">
+                                                <li><t t-out="facility.name"/> </li>
+                                            </t>
+                                        </ul>
+                                    </div>
+                                    <div class="col-8">
+                                        <h6 class="border-bottom pb-2">Description</h6>
+                                        <t t-out="property.description"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                            <br/>
+                        </form>
+                    </div>
+                </div>
+           </section>
+       </t>
+    </template>
+</odoo>

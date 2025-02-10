@@ -131,5 +131,3 @@ publicWidget.registry.web_form_template = publicWidget.Widget.extend({
         alert_box.hide();
     },
 });
-
-

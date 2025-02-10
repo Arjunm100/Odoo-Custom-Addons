@@ -13,6 +13,7 @@ class PropertyRentLease(models.Model):
     _name = "property.rent.lease"
     _description = "Rent or Lease Management"
     _rec_name = 'sequence'
+    _order = 'stages,tenant_id,start_date'
     _inherit = "mail.thread"
 
     sequence = fields.Char(string='Sequence', default=lambda self: "New", readonly=True)

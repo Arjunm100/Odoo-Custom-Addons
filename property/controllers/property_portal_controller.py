@@ -32,12 +32,14 @@ class PropertyCustomerPortal(CustomerPortal):
         orders = request.env['property.rent.lease'].sudo().search([('tenant_id', '=', tenant_id)])
         return request.render('property.portal_my_home_property_views', {'orders': orders, 'page_name': 'property'})
 
-    @http.route(['/my/property/<model("property.rent.lease"):order>'], type='http', auth="public", website=True)
-    def portal_my_order(self, order=None):
+    @http.route(['/my/property/<int:order_id>'], type='http', auth="public", website=True)
+    def portal_my_order(self, order_id=None):
         """Display the details of a specific property rental order."""
+        order = request.env['property.rent.lease'].sudo().browse(order_id)
         return request.render('property.property_order_portal_content', {'order': order, 'page_name': 'property_order'})
 
-    @http.route('/thank-you/<model("property.rent.lease"):order>', auth="public", website=True)
-    def page_thank_you(self,order):
+    @http.route('/thank-you/<int:order_id>', auth="public", website=True)
+    def page_thank_you(self,order_id):
         """Display the thank-you page"""
+        order = request.env['property.rent.lease'].sudo().browse(order_id)
         return request.render('property.thank_you_template',{'order':[order.id,order.sequence]})

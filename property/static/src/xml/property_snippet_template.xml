@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="best_seller_template" xml:space="preserve">
+    <t t-name="property.property_time_wise">
+        <div>
+            <div id="prop_carousel" class="container carousel slide" name="carousel" data-bs-ride="carousel" t-att-data-bs-interval="interval">
+                <div class="carousel-inner row w-100 mx-auto" role="listbox">
+                    <t t-foreach="property_data" t-as="property" t-key="dat">
+                        <div class="carousel-item">
+                            <div class="row row-cols-1 row-cols-md-4 g-4">
+                                <t t-foreach="property" t-as="val" t-key="data_index">
+                                    <div class="col" style="max-width: 400px;margin: auto;">
+                                        <div class="card bg-info property_card" t-att-id="val.id">
+                                            <t t-if="val.image">
+                                                <img t-attf-src="data:image/png;base64,{{val.image}}" class="card-img-top"/>
+                                            </t>
+                                            <t t-else="">
+                                                <img src="/property/static/src/image/property.webp" class="card-img-top"/>
+                                            </t>
+                                          <div class="card-body bg-info">
+                                            <h4 class="card-title text-uppercase"><t t-esc="val.name"/></h4>
+                                              <strong class="d-inline">Owner </strong><p class="card-text d-inline"><t t-esc="val.owner_id[1]"/></p><br/>
+                                              <strong class="d-inline">Market Value </strong><p class="card-text d-inline"><t t-esc="val.price"/></p><br/>
+                                              <strong class="d-inline">Rental Rate </strong><p class="card-text d-inline"><t t-esc="val.rent_amount"/></p><br/>
+                                              <strong class="d-inline">Lease Rate </strong><p class="card-text d-inline"><t t-esc="val.lease_amount"/></p><br/>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                    </div>
+                    </t>
+                </div>
+                <a href="#prop_carousel" class="carousel-control-prev" data-bs-slide="prev" role="button" aria-label="Previous" title="Previous">
+                    <span class="fa fa-chevron-circle-left fa-2x"></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+
+                <a href="#prop_carousel" class="carousel-control-next" data-bs-slide="next" role="button" aria-label="Next" title="Next">
+                    <span class="fa fa-chevron-circle-right fa-2x"></span>
+                    <span class="visually-hidden">Next</span>
+                </a>
+            </div>
+        </div>
+    </t>
+</templates>
+

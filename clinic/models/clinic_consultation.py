@@ -21,9 +21,14 @@ class ClinicConsultation(models.Model):
     temperature = fields.Integer(string="Temperature")
     diognosys = fields.Text(string="Diognosys")
     medcine = fields.One2many(string="Medcine",comodel_name="clinic.priscription",inverse_name="consult_id")
+    x = fields.Integer('x_field',compute='x_compute')
 
     @api.model
     def create(self,vals_list):
         vals_list['consultation_no'] = self.env['ir.sequence'].next_by_code('clinic.consultation')
         return super().create(vals_list)
 
+    # @api.depends()
+    def x_compute(self):
+        for rec in self:
+            rec.x = rec.op_patient_age + 1
