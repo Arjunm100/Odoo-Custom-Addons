@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="cart_lines_inherit"
+             inherit_id="website_sale.cart_lines" name="Products" active="True">
+        <xpath expr="//div[@name='o_wsale_cart_line_button_container']" position="before">
+            <div>
+                <t t-if="line.product_id.bom_ids and line.product_id.id in bom_cart_products">
+                    <div>
+                        <br/>
+                        <h6 class="border-bottom">Bill Of Materials</h6>
+                        <ol>
+                            <t t-foreach="line.product_id.bom_ids.bom_line_ids" t-as="bom_line">
+                                <a t-att-href="bom_line.product_id.website_url">
+                                    <li t-esc="bom_line.product_id.name"/>
+                                </a>
+                            </t>
+                        </ol>
+                    </div>
+                </t>
+            </div>
+        </xpath>
+    </template>
+</odoo>

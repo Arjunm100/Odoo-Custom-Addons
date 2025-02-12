@@ -83,7 +83,7 @@
                                                 <td>
                                                     <select id="property" name="property_orderline" class="form-control"
                                                             required="1">
-                                                        <option value="['False', '', '', '']"></option>
+                                                        <option value="['False', '', '', '']"/>
                                                         <t t-foreach="properties" t-as="val">
                                                             <option t-att-value="str(properties[val])">
                                                                 <t t-esc="properties[val][1]"/>
@@ -110,7 +110,7 @@
                                     <button type="button"
                                             class="btn btn-info add_order_line button-color"
                                             style="float: right; margin-right: -15px;">
-                                        <i class="fa fa-plus"></i>
+                                        <i class="fa fa-plus"/>
                                     </button>
                                 </div>
                             </div>
