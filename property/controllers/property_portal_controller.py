@@ -39,7 +39,7 @@ class PropertyCustomerPortal(CustomerPortal):
         return request.render('property.property_order_portal_content', {'order': order, 'page_name': 'property_order'})
 
     @http.route('/thank-you/<int:order_id>', auth="public", website=True)
-    def page_thank_you(self,order_id):
+    def page_thank_you(self, order_id):
         """Display the thank-you page"""
         order = request.env['property.rent.lease'].sudo().browse(order_id)
-        return request.render('property.thank_you_template',{'order':[order.id,order.sequence]})
+        return request.render('property.thank_you_template', {'order': [order.id, order.sequence]})

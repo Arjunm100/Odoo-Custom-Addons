@@ -17,5 +17,5 @@ class ProductProduct(models.Model):
     def _load_pos_data_fields(self, config_id):
         """Extend POS data fields to include the rating field."""
         data = super()._load_pos_data_fields(config_id)
-        data.append('rating')
+        data.append('pos_rating')
         return data

@@ -2,8 +2,8 @@
 <templates id="pos_product_rating" xml:space="preserve">
    <t t-name="custom_pos_receipt.ProductCard" t-inherit="point_of_sale.ProductCard" t-inherit-mode="extension">
        <xpath expr="//div[hasclass('product-information-tag')]" position="before">
-           <t t-if="props.product.rating!= 0">
-               <span>★<t t-esc="props.product.rating"/></span>
+           <t t-if="props.product.pos_rating !== '0'">
+               <span>★<t t-esc="props.product.pos_rating"/></span>
            </t>
        </xpath>
    </t>

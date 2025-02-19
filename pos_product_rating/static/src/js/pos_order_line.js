@@ -4,7 +4,7 @@ import { patch } from "@web/core/utils/patch";
 patch(PosOrderline.prototype, {
     getDisplayData() {
         var data = super.getDisplayData();
-        data['product_rating'] = this._raw.product_id.rating;
+        data['product_rating'] = this.get_product().pos_rating;
         return data;
     }
 })
