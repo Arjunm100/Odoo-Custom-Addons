@@ -4,7 +4,7 @@
 from email.policy import default
 
 from odoo import api, fields, models
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError, RedirectWarning, AccessError
 from odoo.tools.translate import _
 
 
@@ -130,7 +130,14 @@ class PropertyRentLease(models.Model):
             template = self.env.ref('property.email_template_property_order_confirm')
             template.send_mail(self.id, force_send=True)
         else:
-            raise ValidationError('Attachments needed to confirm')
+            raise UserError("Upload related documents to confirm")
+
+    def action_open_web(self):
+        return {
+                "type": "ir.actions.act_url",
+                "url": f"/my/property/{self.id}",
+                "target": "new",
+            }
 
     def action_close(self):
         """set the stage to close"""

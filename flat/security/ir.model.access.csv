@@ -1,0 +1,4 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_flat_management,access_flat.management,model_flat_management,base.group_user,1,1,1,1
+access_flat_sale,access_flat.sale,model_flat_sale,base.group_user,1,1,1,1
+

@@ -23,6 +23,8 @@
                     <button name="action_draft" type="object" string="Reset"
                             invisible="stages == 'draft'" class="btn-secondary"
                             groups="property.property_group_manager"/>
+                    <button name="action_open_web" type="object" string="View in website"
+                            class="btn-secondary"/>
                     <field name="stages" widget="statusbar"/>
                 </header>
                 <sheet>
