@@ -13,8 +13,14 @@
                <setting id="categwise_discount"
             title="Show the Bom for selected products in Cart"
                  help="Show the Bom for selected products in Cart">
-                   <field name="pos_categ_discount_id"/>
-                   <field name="categ_discount_limit"/>
+                   <div>
+                       <label for="pos_categ_discount_id" string="Category"/>
+                       <field name="pos_categ_discount_id"/>
+                   </div>
+                   <div>
+                       <label for="pos_discount_limit" string="Limit"/>
+                        <field name="pos_discount_limit" widget="percentage"/>
+                   </div>
                </setting>
            </xpath>
        </field>
