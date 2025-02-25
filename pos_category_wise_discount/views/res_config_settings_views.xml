@@ -11,15 +11,17 @@
            <xpath expr="//block[@id='pos_pricing_section']"
                   position="inside">
                <setting id="categwise_discount"
-            title="Show the Bom for selected products in Cart"
-                 help="Show the Bom for selected products in Cart">
-                   <div>
-                       <label for="pos_categ_discount_id" string="Category"/>
-                       <field name="pos_categ_discount_id"/>
-                   </div>
-                   <div>
-                       <label for="pos_discount_limit" string="Limit"/>
-                        <field name="pos_discount_limit" widget="percentage"/>
+                        string="Category wise discount"
+                        help="Provide category wise discount limit to product">
+                   <div class="content-group">
+                        <div class="row mt16">
+                            <label for="pos_category_wise_discount_ids" string="Category"/>
+                            <field name="pos_category_wise_discount_ids" widget="many2many_tags"/>
+                        </div>
+                        <div class="row mt16">
+                            <label for="pos_discount_limit" string="Limit"/>
+                            <field name="pos_discount_limit" widget="percentage"/>
+                        </div>
                    </div>
                </setting>
            </xpath>

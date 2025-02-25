@@ -14,7 +14,7 @@ class PropertyWebContoller(Controller):
     - Rendering a property listing page.
     - Submitting a property rental or lease request."""
 
-    @route('/property', auth='public', website=True)
+    @route('/property', auth='none', website=True)
     def render_property_page(self, **kwargs):
         """Render the property order page"""
         properties_data = request.env['property.management'].sudo().search([('status', '=', 'draft')])

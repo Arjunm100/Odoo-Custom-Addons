@@ -6,25 +6,26 @@ import { AlertDialog } from "@web/core/confirmation_dialog/confirmation_dialog";
 patch(PosStore.prototype, {
     async pay() {
         var orderlines = this.get_order().get_orderlines();
-        var status = true;
-        for(var i=0;i<orderlines.length;i++){
-            var category = orderlines[i].models["pos.config"].getFirst()._raw.discount_categ_id;
-            var discount_limit = (orderlines[i].models["pos.config"].getFirst()._raw.discount_categ_limit)*100;
-            var product = orderlines[i].get_product();
-            var line_discount = orderlines[0].get_discount();
-            console.log(discount_limit)
+        var category = [];
+        this.config.pos_discount_wise_category_ids.forEach((categ) => {
+            category.push(categ.id);
+        })
+        var discount_limit = (this.config.pos_discount_categ_limit)*100;
+        var orderLineStatus = {'discount_price':0,'actual_price':0};
+        orderlines.forEach((line) => {
+            var product = line.get_product();
+            var line_discount = line.get_discount();
             var discount_category = [];
-            for(var j=0;j<product.pos_categ_ids.length;j++){
-                discount_category.push(product.pos_categ_ids[j].id);
-                }
-            if(discount_category.includes(category)){
-                if(line_discount > discount_limit){
-                    status = false;
-                    break;
-                }
+            product.pos_categ_ids.forEach((categ) => {
+                discount_category.push(categ.id);
+            });
+            if(discount_category.some(item => category.includes(item))){
+                orderLineStatus['discount_price'] = orderLineStatus['discount_price'] + line.price_subtotal;
+                orderLineStatus['actual_price'] = orderLineStatus['actual_price'] + ((line.price_subtotal)/((100-line_discount)/100));
             }
-        }
-        if(status){
+        });
+        var discounted_total = ((orderLineStatus['actual_price'] - orderLineStatus['discount_price'])/orderLineStatus['actual_price'])*100;
+        if(discounted_total <= discount_limit){
             return super.pay();
         }
         else{
@@ -35,4 +36,3 @@ patch(PosStore.prototype, {
         }
     }
 })
-
