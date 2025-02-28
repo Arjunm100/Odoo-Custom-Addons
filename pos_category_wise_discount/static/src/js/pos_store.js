@@ -5,6 +5,7 @@ import { AlertDialog } from "@web/core/confirmation_dialog/confirmation_dialog";
 
 patch(PosStore.prototype, {
     async pay() {
+        console.log(this.get_order())
         var orderlines = this.get_order().get_orderlines();
         var category = [];
         this.config.pos_discount_wise_category_ids.forEach((categ) => {
