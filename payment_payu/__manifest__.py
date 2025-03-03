@@ -12,7 +12,8 @@
     'images': ['static/description/icon.png'],
     'depends': ['payment'],
     'data': [
+        'views/payment_payu_templates.xml',
         'data/payment_provider_data.xml',
-        'views/payment_provider_views.xml'
+        'views/payment_provider_views.xml',
     ]
 }
