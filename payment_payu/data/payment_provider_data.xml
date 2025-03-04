@@ -9,5 +9,6 @@
         <field name="image_128" type="base64" file="payment_payu/static/description/icon.png"/>
         <field name="redirect_form_view_id" ref="redirect_form"/>
         <field name="payu_api_key">test</field>
+        <field name="payu_salt">test</field>
     </record>
 </odoo>
