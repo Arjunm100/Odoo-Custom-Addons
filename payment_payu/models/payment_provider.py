@@ -31,12 +31,12 @@ class PaymentProvider(models.Model):
         default_codes = super()._get_default_payment_method_codes()
         if self.code != 'payu':
             return default_codes
-        return {'ideal', 'amex', 'card', 'discover', 'visa', 'mastercard'}
+        return {'payu'}
 
     def _payu_make_request(self, endpoint, data=None, method='POST'):
         self.ensure_one
         headers = {"Accept": "application/json", "Content-Type": "application/x-www-form-urlencoded"}
-        url = "https://test.payu.in/_payment"
+        url = " https://test.payu.in/_payment"
         try:
             response = requests.request("POST", url, data=data, headers=headers,timeout=10)
             print('cat10',response.status_code,response.text)

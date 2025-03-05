@@ -13,5 +13,6 @@ class PayuController(http.Controller):
     )
     def payu_return_from_checkout(self, **data):
         print('cat5')
-        # request.env['payment.transaction'].sudo()._handle_notification_data('payu', data)
+        request.env['payment.transaction'].sudo()._handle_notification_data('payu', data)
+        print('cat100',data)
         return request.redirect('/payment/status')
