@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 
+"""Module for handling PayU payment return callbacks in Odoo"""
+
 from odoo import http
-from odoo.exceptions import ValidationError
 from odoo.http import request
 
 class PayuController(http.Controller):
+    """Controller for handling PayU payment gateway return URLs."""
     _return_url = '/payment/payu/return'
 
     @http.route(
@@ -12,7 +14,6 @@ class PayuController(http.Controller):
         save_session=False
     )
     def payu_return_from_checkout(self, **data):
-        print('cat5')
+        """Handles the PayU payment return callback"""
         request.env['payment.transaction'].sudo()._handle_notification_data('payu', data)
-        print('cat100',data)
         return request.redirect('/payment/status')
